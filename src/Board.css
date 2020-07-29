@@ -1,0 +1,14 @@
+.Board {
+	margin: 0 auto;
+	max-width: fit-content;
+	padding: 20px;
+}
+
+.Board-Title {
+	margin-bottom: 30px;
+}
+
+.Board-Game {
+	border: 3px solid black;
+	padding: 0px;
+}
