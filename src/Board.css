@@ -4,7 +4,7 @@
 }
 
 .Board-Title {
-	margin: 50px;
+	margin: 40px;
 	color: whitesmoke;
 	font-family: fantasy, Georgia, Times, 'Times New Roman', serif;
 	font-size: 5rem;
@@ -16,14 +16,14 @@
 }
 
 .Board-Win {
-	margin: 50px;
+	margin: 40px;
 	font-size: 4rem;
 	font-family: fantasy, Georgia, Times, 'Times New Roman', serif;
 	color: rgb(159, 189, 218);
 }
 
 .Board-Reset {
-	margin: 50px;
+	margin: 40px;
 	width: 100px;
 	height: 40px;
 	border-radius: 20px;
@@ -37,7 +37,19 @@
 	box-shadow: 1px 2px 25px #a8a8a8, -1px -2px 20px #b7b7b7;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-height: 700px) {
+	.Board-Title {
+		margin: 20px;
+	}
+	.Board-Win {
+		margin: 20px;
+	}
+	.Board-Reset {
+		margin: 20px;
+	}
+}
+
+@media only screen and (max-width: 480px) {
 	.Board-Title {
 		font-size: 3.3rem;
 	}

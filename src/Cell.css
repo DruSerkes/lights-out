@@ -22,7 +22,7 @@
 }
 
 /*  Phones */
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 480px) {
 	.Cell {
 		height: 60px;
 		width: 60px;
