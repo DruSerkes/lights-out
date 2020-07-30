@@ -6,9 +6,31 @@
 .Board-Title {
 	margin: 50px;
 	color: whitesmoke;
-	font-family: Georgia, Times, 'Times New Roman', serif;
+	font-family: fantasy, Georgia, Times, 'Times New Roman', serif;
+	font-size: 5rem;
 }
 
 .Board-Game {
 	padding: 0px;
+	margin: 0 auto;
+}
+
+.Board-Win {
+	margin: 50px;
+	font-size: 4rem;
+	font-family: fantasy, Georgia, Times, 'Times New Roman', serif;
+	color: rgb(159, 189, 218);
+}
+
+@media only screen and (max-width: 400px) {
+	.Board-Title {
+		font-size: 3.3rem;
+	}
+
+	.Board-Win {
+		margin: 50px;
+		font-size: 3rem;
+		font-family: fantasy, Georgia, Times, 'Times New Roman', serif;
+		color: rgb(159, 189, 218);
+	}
 }

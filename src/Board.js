@@ -28,7 +28,7 @@ import cloneDeep from 'lodash/cloneDeep';
  *
  **/
 
-function Board({ nrows = 3, ncols = 3, chanceLightStartsOn = 0.5 }) {
+function Board({ nrows = 2, ncols = 2, chanceLightStartsOn = 0.5 }) {
 	const [ board, setBoard ] = useState(createBoard());
 
 	/** create a board nrows high/ncols wide, each cell randomly lit or unlit 
@@ -59,8 +59,8 @@ function Board({ nrows = 3, ncols = 3, chanceLightStartsOn = 0.5 }) {
    */
 	function hasWon() {
 		// check the board in state to determine whether the player has won.
-		for (let y = 0; y < board.length; y++) {
-			for (let x = 0; x < board.length; x++) {
+		for (let y = 0; y < nrows; y++) {
+			for (let x = 0; x < ncols; x++) {
 				if (board[y][x] === true) return false;
 			}
 		}
@@ -126,17 +126,6 @@ function Board({ nrows = 3, ncols = 3, chanceLightStartsOn = 0.5 }) {
 			</table>
 		</div>
 	);
-
-	// {board.map((row, y) => (
-	//   <trow className="Board-Row">
-	//     {row.map((val, x) => (
-	//       <Cell flipCellsAround={() => flipCellsAround(`${y}-${x}`)} isLit={val} />
-	//     ))}
-	//   </trow>
-	// ))}
-	// make table board
-
-	// TODO
 }
 
 export default Board;
