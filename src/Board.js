@@ -28,7 +28,7 @@ import cloneDeep from 'lodash/cloneDeep';
  *
  **/
 
-function Board({ nrows = 3, ncols = 3, chanceLightStartsOn = 0.5 }) {
+function Board({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) {
 	const [ board, setBoard ] = useState(createBoard());
 
 	/** create a board nrows high/ncols wide, each cell randomly lit or unlit 
