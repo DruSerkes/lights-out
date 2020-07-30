@@ -28,7 +28,7 @@ import cloneDeep from 'lodash/cloneDeep';
  *
  **/
 
-function Board({ nrows = 4, ncols = 4, chanceLightStartsOn = 0.5 }) {
+function Board({ nrows = 3, ncols = 3, chanceLightStartsOn = 0.5 }) {
 	const [ board, setBoard ] = useState(createBoard());
 
 	/** create a board nrows high/ncols wide, each cell randomly lit or unlit 
@@ -94,12 +94,22 @@ function Board({ nrows = 4, ncols = 4, chanceLightStartsOn = 0.5 }) {
 		});
 	}
 
+	/**
+	 * Reset the game 
+	 */
+	const resetGame = () => {
+		setBoard(createBoard());
+	};
+
 	// if the game is won, just show a winning msg & render nothing else
 	if (hasWon()) {
 		return (
 			<div className="Board">
 				<h1 className="Board-Title">Lights Out!</h1>
 				<h2 className="Board-Win">YOU WON!!</h2>
+				<button className="Board-Reset " onClick={resetGame}>
+					Reset
+				</button>
 			</div>
 		);
 	}
@@ -124,6 +134,9 @@ function Board({ nrows = 4, ncols = 4, chanceLightStartsOn = 0.5 }) {
 			<table className="Board-Game">
 				<tbody>{tableBody}</tbody>
 			</table>
+			<button className="Board-Reset " onClick={resetGame}>
+				Reset
+			</button>
 		</div>
 	);
 }
