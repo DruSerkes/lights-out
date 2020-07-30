@@ -4,7 +4,7 @@
 }
 
 .Board-Title {
-	margin: 40px;
+	margin: 30px;
 	color: whitesmoke;
 	font-family: fantasy, Georgia, Times, 'Times New Roman', serif;
 	font-size: 5rem;
@@ -35,6 +35,13 @@
 .Board-Reset:hover {
 	background-color: rgb(159, 189, 218);
 	box-shadow: 1px 2px 25px #a8a8a8, -1px -2px 20px #b7b7b7;
+}
+
+.Board-Directions {
+	margin-bottom: 30px;
+	margin-top: 0px;
+	color: gainsboro;
+	padding: 0px 5px;
 }
 
 @media only screen and (max-height: 700px) {

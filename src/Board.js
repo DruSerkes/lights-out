@@ -131,6 +131,12 @@ function Board({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) {
 	return (
 		<div className="Board">
 			<h1 className="Board-Title">Lights Out!</h1>
+			<p className="Board-Directions">
+				<em>
+					Turn off all the lights! <br /> Clicking a button will toggle the lights above, below, left, and
+					right.
+				</em>
+			</p>
 			<table className="Board-Game">
 				<tbody>{tableBody}</tbody>
 			</table>
