@@ -120,7 +120,7 @@ function Board({ nrows = 3, ncols = 3, chanceLightStartsOn = 0.5 }) {
 
 	return (
 		<div className="Board">
-			<h1 className="Board-title">Lights Out!</h1>
+			<h1 className="Board-Title">Lights Out!</h1>
 			<table className="Board-Game">
 				<tbody>{tableBody}</tbody>
 			</table>
