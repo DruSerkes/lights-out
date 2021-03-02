@@ -32,7 +32,7 @@ import cloneDeep from 'lodash/cloneDeep';
  **/
 
 export const Board = ({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) => {
-	const [board, setBoard] = useState(createBoard(nrows, ncols, chanceLightStartsOn));
+	const [board, setBoard] = useState(() => createBoard(nrows, ncols, chanceLightStartsOn));
 
 	const flipCellsAround = (coord) => {
 		setBoard((oldBoard) => {
@@ -66,12 +66,13 @@ export const Board = ({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) => {
 	 */
 	const resetGame = () => setBoard(createBoard(nrows, ncols, chanceLightStartsOn));
 
-	const tableBody = [];
+	let tableBody = [];
 	for (let y = 0; y < nrows; y++) {
 		let tableRow = [];
 		for (let x = 0; x < ncols; x++) {
 			let coord = `${y}-${x}`;
-			tableRow.push(<Cell key={coord} isLit={board[y][x]} flipCellsAround={() => flipCellsAround(coord)} />);
+			let isLit = board[y][x];
+			tableRow.push(<Cell key={coord} isLit={isLit} flipCellsAround={() => flipCellsAround(coord)} />);
 		}
 		tableBody.push(
 			<tr key={y} className="Board-Row">
@@ -84,7 +85,6 @@ export const Board = ({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) => {
 		hasWon(nrows, ncols, board)
 			? <Winner resetGame={resetGame} />
 			: <div className="Board">
-				<h1 className="Board-Title">Lights Out!</h1>
 
 				<p className="Board-Directions">
 					<em>
