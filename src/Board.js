@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
-import Cell from './Cell';
+import { Cell } from './Cell';
+import { Winner } from './Winner';
 import './Board.css';
 import cloneDeep from 'lodash/cloneDeep';
 
@@ -103,17 +104,9 @@ export const Board = ({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) => {
 	};
 
 	// if the game is won, just show a winning msg & render nothing else
-	if (hasWon()) {
-		return (
-			<div className="Board">
-				<h1 className="Board-Title">Lights Out!</h1>
-				<h2 className="Board-Win">YOU WON!!</h2>
-				<button className="Board-Reset " onClick={resetGame}>
-					Reset
-				</button>
-			</div>
-		);
-	};
+	// if (hasWon()) {
+	// 	return <Winner resetGame={resetGame} />
+	// };
 
 	let tableBody = [];
 	for (let y = 0; y < nrows; y++) {
@@ -130,25 +123,27 @@ export const Board = ({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) => {
 	}
 
 	return (
-		<div className="Board">
-			<h1 className="Board-Title">Lights Out!</h1>
+		hasWon()
+			? <Winner resetGame={resetGame} />
+			: <div className="Board">
+				<h1 className="Board-Title">Lights Out!</h1>
 
-			<p className="Board-Directions">
-				<em>
-					Turn off all the lights!
+				<p className="Board-Directions">
+					<em>
+						Turn off all the lights!
 					<br />
 					Clicking a button will toggle the lights above, below, left, and
 					right.
-				</em>
-			</p>
+					</em>
+				</p>
 
-			<table className="Board-Game">
-				<tbody>{tableBody}</tbody>
-			</table>
+				<table className="Board-Game">
+					<tbody>{tableBody}</tbody>
+				</table>
 
-			<button className="Board-Reset " onClick={resetGame}>
-				Reset
-			</button>
-		</div>
+				<button className="Board-Reset " onClick={resetGame}>
+					Reset
+				</button>
+			</div>
 	);
 };
