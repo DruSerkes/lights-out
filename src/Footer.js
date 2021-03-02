@@ -1,7 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import './Footer.css';
 
-const Footer = ({ year, copy = false }) => {
+export const Footer = () => {
+	const year = new Date().getFullYear();
 	return (
 		<footer className="Footer">
 			<a href="https://github.com/druserkes" className="Footer-Text">
@@ -10,5 +11,3 @@ const Footer = ({ year, copy = false }) => {
 		</footer>
 	);
 };
-
-export default Footer;

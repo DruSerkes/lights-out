@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import Cell from './Cell';
 import './Board.css';
 import cloneDeep from 'lodash/cloneDeep';
@@ -28,8 +29,8 @@ import cloneDeep from 'lodash/cloneDeep';
  *
  **/
 
-function Board({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) {
-	const [ board, setBoard ] = useState(createBoard());
+export const Board = ({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) => {
+	const [board, setBoard] = useState(createBoard());
 
 	/** create a board nrows high/ncols wide, each cell randomly lit or unlit 
    * @returns randomly generated array of arrays with random true/false values
@@ -69,7 +70,7 @@ function Board({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) {
 
 	function flipCellsAround(coord) {
 		setBoard((oldBoard) => {
-			const [ y, x ] = coord.split('-').map(Number);
+			const [y, x] = coord.split('-').map(Number);
 
 			const flipCell = (y, x, boardCopy) => {
 				// if this coord is actually on board, flip it
@@ -112,7 +113,7 @@ function Board({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) {
 				</button>
 			</div>
 		);
-	}
+	};
 
 	let tableBody = [];
 	for (let y = 0; y < nrows; y++) {
@@ -131,20 +132,23 @@ function Board({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) {
 	return (
 		<div className="Board">
 			<h1 className="Board-Title">Lights Out!</h1>
+
 			<p className="Board-Directions">
 				<em>
-					Turn off all the lights! <br /> Clicking a button will toggle the lights above, below, left, and
+					Turn off all the lights!
+					<br />
+					Clicking a button will toggle the lights above, below, left, and
 					right.
 				</em>
 			</p>
+
 			<table className="Board-Game">
 				<tbody>{tableBody}</tbody>
 			</table>
+
 			<button className="Board-Reset " onClick={resetGame}>
 				Reset
 			</button>
 		</div>
 	);
-}
-
-export default Board;
+};
