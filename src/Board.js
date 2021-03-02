@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { Cell } from './Cell';
 import { Winner } from './Winner';
+import { createBoard, hasWon } from './Helpers';
 import './Board.css';
 import cloneDeep from 'lodash/cloneDeep';
 
@@ -31,43 +32,7 @@ import cloneDeep from 'lodash/cloneDeep';
  **/
 
 export const Board = ({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) => {
-	const [board, setBoard] = useState(createBoard());
-
-	/** create a board nrows high/ncols wide, each cell randomly lit or unlit 
-   * @returns randomly generated array of arrays with random true/false values
-  */
-	const createBoard = () => {
-		let initialBoard = [];
-		// create array-of-arrays of true/false values
-		for (let x = 0; x < nrows; x++) {
-			let newRow = [];
-			for (let y = 0; y < ncols; y++) {
-				if (Math.random() < chanceLightStartsOn) {
-					newRow.push(true);
-				} else {
-					newRow.push(false);
-				}
-			}
-			initialBoard.push(newRow);
-		}
-
-		return initialBoard;
-	};
-
-	/**
-   * checks board in state to determine whether player has won
-   * 
-   * @returns boolean 
-   */
-	const hasWon = () => {
-		// check the board in state to determine whether the player has won.
-		for (let y = 0; y < nrows; y++) {
-			for (let x = 0; x < ncols; x++) {
-				if (board[y][x] === true) return false;
-			}
-		}
-		return true;
-	};
+	const [board, setBoard] = useState(createBoard(nrows, ncols, chanceLightStartsOn));
 
 	const flipCellsAround = (coord) => {
 		setBoard((oldBoard) => {
@@ -99,11 +64,9 @@ export const Board = ({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) => {
 	/**
 	 * Reset the game 
 	 */
-	const resetGame = () => {
-		setBoard(createBoard());
-	};
+	const resetGame = () => setBoard(createBoard(nrows, ncols, chanceLightStartsOn));
 
-	let tableBody = [];
+	const tableBody = [];
 	for (let y = 0; y < nrows; y++) {
 		let tableRow = [];
 		for (let x = 0; x < ncols; x++) {
@@ -118,7 +81,7 @@ export const Board = ({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) => {
 	};
 
 	return (
-		hasWon()
+		hasWon(nrows, ncols, board)
 			? <Winner resetGame={resetGame} />
 			: <div className="Board">
 				<h1 className="Board-Title">Lights Out!</h1>
