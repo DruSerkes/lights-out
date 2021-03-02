@@ -36,7 +36,7 @@ export const Board = ({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) => {
 	/** create a board nrows high/ncols wide, each cell randomly lit or unlit 
    * @returns randomly generated array of arrays with random true/false values
   */
-	function createBoard() {
+	const createBoard = () => {
 		let initialBoard = [];
 		// create array-of-arrays of true/false values
 		for (let x = 0; x < nrows; x++) {
@@ -52,14 +52,14 @@ export const Board = ({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) => {
 		}
 
 		return initialBoard;
-	}
+	};
 
 	/**
    * checks board in state to determine whether player has won
    * 
    * @returns boolean 
    */
-	function hasWon() {
+	const hasWon = () => {
 		// check the board in state to determine whether the player has won.
 		for (let y = 0; y < nrows; y++) {
 			for (let x = 0; x < ncols; x++) {
@@ -67,9 +67,9 @@ export const Board = ({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) => {
 			}
 		}
 		return true;
-	}
+	};
 
-	function flipCellsAround(coord) {
+	const flipCellsAround = (coord) => {
 		setBoard((oldBoard) => {
 			const [y, x] = coord.split('-').map(Number);
 
@@ -94,7 +94,7 @@ export const Board = ({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) => {
 			// return the copy
 			return boardCopy;
 		});
-	}
+	};
 
 	/**
 	 * Reset the game 
@@ -102,11 +102,6 @@ export const Board = ({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) => {
 	const resetGame = () => {
 		setBoard(createBoard());
 	};
-
-	// if the game is won, just show a winning msg & render nothing else
-	// if (hasWon()) {
-	// 	return <Winner resetGame={resetGame} />
-	// };
 
 	let tableBody = [];
 	for (let y = 0; y < nrows; y++) {
@@ -120,7 +115,7 @@ export const Board = ({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.4 }) => {
 				{tableRow}
 			</tr>
 		);
-	}
+	};
 
 	return (
 		hasWon()
